@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>友情星域 | 给雨珊、可欣、馨妍、秉轩</title>
+    <meta
+      name="description"
+      content="一个送给李雨珊、陈可欣、陈馨妍、李秉轩的静态友情网页，包含鬼灭之刃人物主视觉、古筝舞蹈、超级飞侠、乐高和轻量互动彩蛋。"
+    />
+    <link rel="preload" as="image" href="./assets/hero-mobile.jpg" media="(max-width: 700px)" />
+    <link rel="preload" as="image" href="./assets/hero-desktop.jpg" media="(min-width: 701px)" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+
+    <main class="page-shell">
+      <section class="hero" aria-label="友情星域首页">
+        <picture>
+          <source media="(max-width: 700px)" srcset="./assets/hero-mobile.jpg" />
+          <img
+            class="hero-art"
+            src="./assets/hero-desktop.jpg"
+            alt="义勇、蜜璃、时透无一郎、玄弥在星夜祭典舞台上的原创同人风插画"
+            width="1400"
+            height="788"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <nav class="topbar" aria-label="页面导航">
+          <span class="brand">Friendship Galaxy</span>
+          <div class="top-actions">
+            <button class="icon-button" id="sparkButton" type="button" aria-label="释放星光" title="释放星光">✦</button>
+            <button class="icon-button" id="soundButton" type="button" aria-label="开启声音" title="开启声音">♪</button>
+          </div>
+        </nav>
+
+        <div class="hero-copy">
+          <p class="eyebrow">给李雨珊、陈可欣、陈馨妍、李秉轩</p>
+          <h1>友情星域</h1>
+          <p class="hero-text">
+            把鬼杀队的高光、舞台上的整活、古筝弦里的小宇宙，还有飞行和积木的快乐，做成一台手机里的友情小游戏机。
+          </p>
+          <div class="hero-links" aria-label="快捷跳转">
+            <a href="#kimetsu">鬼灭频道</a>
+            <a href="#stage">雨珊舞台</a>
+            <a href="#bingxuan">秉轩基地</a>
+            <a href="#wishes">友情祝福</a>
+          </div>
+          <div class="quick-channel-grid" aria-label="选择朋友频道">
+            <a class="quick-card yushan" href="#stage">
+              <span>雨珊</span>
+              <small>古筝整活</small>
+            </a>
+            <a class="quick-card kimetsu" href="#kimetsu">
+              <span>可欣</span>
+              <small>鬼杀队抽签</small>
+            </a>
+            <a class="quick-card mist" href="#kimetsu">
+              <span>馨妍</span>
+              <small>无一郎雾光</small>
+            </a>
+            <a class="quick-card bx" href="#bingxuan">
+              <span>秉轩</span>
+              <small>飞侠积木</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true">向下探索</div>
+      </section>
+
+      <section class="friend-strip" aria-label="四位朋友">
+        <article class="friend-chip" data-tilt>
+          <span>李雨珊</span>
+          <small>舞蹈 · 古筝 · 月光舞台</small>
+        </article>
+        <article class="friend-chip" data-tilt>
+          <span>陈可欣</span>
+          <small>义勇 · 蜜璃 · 玄弥能量</small>
+        </article>
+        <article class="friend-chip" data-tilt>
+          <span>陈馨妍</span>
+          <small>时透无一郎 · 雾之月光</small>
+        </article>
+        <article class="friend-chip" data-tilt>
+          <span>李秉轩</span>
+          <small>超级飞侠 · 乐高 · 飞行任务</small>
+        </article>
+      </section>
+
+      <section class="squad-zone" aria-label="今日友情剧本">
+        <div class="section-heading compact">
+          <p class="eyebrow">今日友情剧本</p>
+          <h2>先抽一张“今天怎么开心”</h2>
+        </div>
+
+        <div class="squad-board">
+          <article class="script-card">
+            <span>今日队名</span>
+            <strong id="squadName">星星乱入小分队</strong>
+          </article>
+          <article class="script-card">
+            <span>今日任务</span>
+            <strong id="squadQuest">每个人负责笑一下，谁先憋不住谁赢。</strong>
+          </article>
+          <article class="script-card report-card">
+            <span>友情结算</span>
+            <strong id="squadReport">等待生成：快乐值 0%，整活值 0%。</strong>
+          </article>
+          <button class="script-button" id="squadButton" type="button">
+            生成今日友情报告
+            <small>轻点一下，随机出梗</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="kimetsu-zone" id="kimetsu" data-character="giyu">
+        <div class="section-heading">
+          <p class="eyebrow">可欣和馨妍的鬼灭频道</p>
+          <h2>义勇、蜜璃、玄弥，还有馨妍喜欢的无一郎</h2>
+        </div>
+
+        <div class="character-layout">
+          <div class="character-stage" data-tilt>
+            <img
+              src="./assets/hero-desktop.jpg"
+              alt="鬼灭之刃人物同人风主视觉"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="788"
+            />
+            <div class="focus-ring" aria-hidden="true"></div>
+          </div>
+
+          <div class="character-panel">
+            <div class="tabs" role="tablist" aria-label="选择鬼灭人物">
+              <button class="tab is-active" type="button" data-pick="giyu" role="tab" aria-selected="true">义勇</button>
+              <button class="tab" type="button" data-pick="mitsuri" role="tab" aria-selected="false">蜜璃</button>
+              <button class="tab" type="button" data-pick="muichiro" role="tab" aria-selected="false">无一郎</button>
+              <button class="tab" type="button" data-pick="genya" role="tab" aria-selected="false">玄弥</button>
+            </div>
+
+            <article class="character-card is-active" data-copy="giyu">
+              <h3>富冈义勇 · 水面很静，心很稳</h3>
+              <p>给可欣一点冷静又帅气的守护感：像水流一样可靠，站在那里就很有安全感。</p>
+            </article>
+            <article class="character-card" data-copy="mitsuri">
+              <h3>甘露寺蜜璃 · 开心是超强技能</h3>
+              <p>粉绿光带一出现，页面就变甜了：温柔、热烈、会把朋友夸到发光。</p>
+            </article>
+            <article class="character-card" data-copy="muichiro">
+              <h3>时透无一郎 · 雾里也有星光</h3>
+              <p>这一格留给馨妍：安静、清透、像月色落进雾里，一抬眼就有很特别的主角感。</p>
+            </article>
+            <article class="character-card" data-copy="genya">
+              <h3>不死川玄弥 · 倔强但很燃</h3>
+              <p>给星夜加一点紫色火花：嘴上很酷，关键时刻永远站在朋友这边。</p>
+            </article>
+
+            <div class="kimetsu-playbox">
+              <button class="breath-button" id="breathButton" type="button">抽今日呼吸法</button>
+              <p class="breath-result" id="breathResult">今天还没抽签，鬼杀队正在认真装酷。</p>
+              <button class="plot-button" id="plotButton" type="button">打开鬼杀队剧情盲盒</button>
+              <p class="plot-result" id="plotResult">隐藏剧情待开启：朋友们正在后台换帅气姿势。</p>
+              <div class="mission-row" aria-label="鬼杀队友情任务">
+                <button type="button" class="mission" data-task="水之呼吸：今天负责冷静地夸朋友一句。">水</button>
+                <button type="button" class="mission" data-task="恋之呼吸：立刻发送一句甜甜的夸夸。">恋</button>
+                <button type="button" class="mission" data-task="霞之呼吸：假装忘记烦恼，只记得快乐。">霞</button>
+                <button type="button" class="mission" data-task="燃之任务：把今天的尴尬变成笑点。">燃</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage-zone" id="stage">
+        <div class="section-heading">
+          <p class="eyebrow">雨珊的月光舞台</p>
+          <h2>跳舞的时候，连古筝弦都会发光</h2>
+        </div>
+
+        <div class="performance-grid">
+          <div class="dance-scene" data-tilt>
+            <div class="spotlight" aria-hidden="true"></div>
+            <div class="dancer" aria-label="跳舞剪影">
+              <span class="head"></span>
+              <span class="body"></span>
+              <span class="arm left"></span>
+              <span class="arm right"></span>
+              <span class="leg left"></span>
+              <span class="leg right"></span>
+            </div>
+            <button class="dance-button" id="danceButton" type="button">开始共舞</button>
+          </div>
+
+          <div class="guzheng-panel">
+            <div class="guzheng-copy">
+              <h3>送给李雨珊的小古筝</h3>
+              <p>点一下 24 根琴弦，会有一声轻轻的拨弦和星光。这个区域属于她的节奏，也属于你们的掌声。</p>
+            </div>
+            <div class="guzheng" aria-label="互动古筝">
+              <button type="button" class="string" data-note="196.00" aria-label="第 1 根古筝弦"></button>
+              <button type="button" class="string" data-note="220.00" aria-label="第 2 根古筝弦"></button>
+              <button type="button" class="string" data-note="246.94" aria-label="第 3 根古筝弦"></button>
+              <button type="button" class="string" data-note="293.66" aria-label="第 4 根古筝弦"></button>
+              <button type="button" class="string" data-note="329.63" aria-label="第 5 根古筝弦"></button>
+              <button type="button" class="string" data-note="392.00" aria-label="第 6 根古筝弦"></button>
+              <button type="button" class="string" data-note="440.00" aria-label="第 7 根古筝弦"></button>
+              <button type="button" class="string" data-note="493.88" aria-label="第 8 根古筝弦"></button>
+              <button type="button" class="string" data-note="587.33" aria-label="第 9 根古筝弦"></button>
+              <button type="button" class="string" data-note="659.25" aria-label="第 10 根古筝弦"></button>
+              <button type="button" class="string" data-note="783.99" aria-label="第 11 根古筝弦"></button>
+              <button type="button" class="string" data-note="880.00" aria-label="第 12 根古筝弦"></button>
+              <button type="button" class="string" data-note="987.77" aria-label="第 13 根古筝弦"></button>
+              <button type="button" class="string" data-note="1174.66" aria-label="第 14 根古筝弦"></button>
+              <button type="button" class="string" data-note="1318.51" aria-label="第 15 根古筝弦"></button>
+              <button type="button" class="string" data-note="1567.98" aria-label="第 16 根古筝弦"></button>
+              <button type="button" class="string" data-note="1760.00" aria-label="第 17 根古筝弦"></button>
+              <button type="button" class="string" data-note="1975.53" aria-label="第 18 根古筝弦"></button>
+              <button type="button" class="string" data-note="2349.32" aria-label="第 19 根古筝弦"></button>
+              <button type="button" class="string" data-note="2637.02" aria-label="第 20 根古筝弦"></button>
+              <button type="button" class="string" data-note="3135.96" aria-label="第 21 根古筝弦"></button>
+              <button type="button" class="string" data-note="3520.00" aria-label="第 22 根古筝弦"></button>
+              <button type="button" class="string" data-note="3951.07" aria-label="第 23 根古筝弦"></button>
+              <button type="button" class="string" data-note="4698.63" aria-label="第 24 根古筝弦"></button>
+            </div>
+            <div class="comedy-panel">
+              <p id="yushanJoke">雨珊频道待机中：优雅，但随时准备整活。</p>
+              <div class="barrage-screen" id="stageBarrage" aria-live="polite">
+                <span>弹幕待命：雨珊一上台，全场开始乱夸。</span>
+              </div>
+              <div class="comedy-actions">
+                <button type="button" id="complimentButton">古筝夸夸机</button>
+                <button type="button" id="shuffleDanceButton">随机舞步</button>
+                <button type="button" id="applauseButton">掌声拉满</button>
+                <button type="button" id="barrageButton">发射弹幕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bingxuan-zone" id="bingxuan">
+        <div class="section-heading">
+          <p class="eyebrow">秉轩的超级飞侠乐高乐园</p>
+          <h2>点一下就出发，点一下就搭高</h2>
+        </div>
+
+        <div class="bingxuan-game" data-tilt>
+          <div class="game-status">
+            <span>第 <b id="levelNumber">1</b> 关</span>
+            <span id="bxScore">积木 0/6</span>
+          </div>
+
+          <div class="delivery-board">
+            <div class="sky-track" aria-label="超级飞侠派送路线">
+              <div class="station is-active" data-station="0">起飞</div>
+              <div class="station" data-station="1">云站</div>
+              <div class="station" data-station="2">积木城</div>
+              <div class="station" data-station="3">快乐家</div>
+              <div class="toy-plane plane-game" id="bxPlane" aria-label="超级飞侠风格小飞机">
+                <span class="wing left"></span>
+                <span class="body"></span>
+                <span class="wing right"></span>
+                <span class="tail"></span>
+              </div>
+            </div>
+            <p id="flightMission">秉轩的小飞机准备起飞。第一件快乐包裹，马上送达。</p>
+          </div>
+
+          <div class="tower-board">
+            <h3>乐高高塔挑战</h3>
+            <div class="lego-tower" id="legoTower" aria-label="乐高高塔">
+              <span class="tower-slot red"></span>
+              <span class="tower-slot blue"></span>
+              <span class="tower-slot yellow"></span>
+              <span class="tower-slot green"></span>
+              <span class="tower-slot purple"></span>
+              <span class="tower-slot cyan"></span>
+            </div>
+            <p id="legoResult">目标：抽 6 块积木，搭出秉轩的起飞塔。</p>
+          </div>
+
+          <div class="toybox-board">
+            <h3>神秘玩具盒</h3>
+            <p id="toyBoxResult">里面可能是飞机零件、乐高门、迷你跑道，也可能是一块“今天特别开心”的零件。</p>
+            <button type="button" id="toyBoxButton">打开玩具盒</button>
+          </div>
+
+          <div class="big-play-actions" aria-label="秉轩小游戏按钮">
+            <button type="button" id="bxFlyButton">
+              <span>飞一站</span>
+              <small>超级飞侠派送</small>
+            </button>
+            <button type="button" id="bxBuildButton">
+              <span>抽积木</span>
+              <small>乐高塔长高</small>
+            </button>
+            <button type="button" id="bxResetButton">
+              <span>重新开始</span>
+              <small>再玩一局</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="wishes" id="wishes">
+        <div class="section-heading">
+          <p class="eyebrow">最后，把祝福点亮</p>
+          <h2>愿你们四个一直快乐得很有主角感</h2>
+        </div>
+
+        <div class="wish-grid">
+          <article class="wish-card" data-tilt>
+            <span>给雨珊</span>
+            <p>愿每一次旋转都有掌声，每一个音符都落在喜欢的明天。</p>
+          </article>
+          <article class="wish-card" data-tilt>
+            <span>给可欣</span>
+            <p>愿你像喜欢的角色一样勇敢，也永远被温柔和热闹包围。</p>
+          </article>
+          <article class="wish-card" data-tilt>
+            <span>给馨妍</span>
+            <p>愿你的世界像无一郎的雾一样清澈，也总有朋友把星光递到你手里。</p>
+          </article>
+          <article class="wish-card" data-tilt>
+            <span>给秉轩</span>
+            <p>愿你的每一次出发都有超级飞侠的速度，也有乐高一样越拼越大的想象力。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
